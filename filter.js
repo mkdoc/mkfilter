@@ -27,16 +27,19 @@ function Filter(opts) {
  */
 function transform(chunk, encoding, cb) {
 
+  // @todo: handle inline elements
+  function remove(node, owner) {
+    console.dir(node._type);
+    console.dir(owner._type);
+  }
+
+  walker(chunk, remove);
+
+
   // explicitly disabled, drop the chunk
   if(this.flags[chunk._type] === true) {
     return cb();
   }
-
-  function remove(node) {
-    //console.dir(node._type); 
-  }
-
-  walker(chunk, remove);
 
   this.push(chunk);
   cb();
