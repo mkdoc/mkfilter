@@ -1,7 +1,5 @@
 var through = require('through3')
-  , ast = require('mkast')
-  , Node = ast.Node
-  , walker = ast.walker.walk;
+  , Node = require('mkast').Node;
 
 /**
  *  Filters nodes by node type.
@@ -26,24 +24,31 @@ function Filter(opts) {
  *  @param {Function} callback function.
  */
 function transform(chunk, encoding, cb) {
-
-  // @todo: handle inline elements
-  function remove(node, owner) {
-    //console.dir(node._type);
-    //console.dir(owner._type);
-    //if() {
-    
-    //}
-  }
-
-  walker(chunk, remove);
+  var flags = this.flags;
 
   // explicitly disabled, drop the chunk
-  if(this.flags[chunk._type] === true) {
+  if(flags[chunk._type] === true) {
     return cb();
   }
 
-  this.push(chunk);
+  var doc = Node.createDocumentFragment(chunk)
+    , walker = doc.walker()
+    , event
+    , resume;
+
+  while((event = walker.next())) {
+    if(flags[event.node._type] === true && event.entering) {
+      resume = event.node.next || event.node.parent;
+      event.node.unlink();
+      if(resume) {
+        walker.resumeAt(resume);
+      }
+    }
+  }
+
+  // original chunk converted to a node
+  // may have had destructive updates, serialize and push
+  this.push(doc.firstChild);
   cb();
 }
 
