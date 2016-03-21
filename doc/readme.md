@@ -14,7 +14,7 @@ Create the stream and write a [commonmark][] document:
 
 <? @source {javascript=s/\.\.\/index/mkfilter/gm} usage.js ?>
 
-<? @include readme/help.md ?>
+<? @include {=readme} examples.md help.md ?>
 
 <? @exec mkapi index.js --title=API --level=2 ?>
 <? @include {=readme} license.md links.md ?>
