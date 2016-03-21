@@ -1,6 +1,6 @@
 var through = require('through3')
   , ast = require('mkast')
-  //, Node = ast.Node
+  , Node = ast.Node
   , walker = ast.walker.walk;
 
 /**
@@ -28,12 +28,15 @@ function Filter(opts) {
 function transform(chunk, encoding, cb) {
 
   // @todo: handle inline elements
-  //function remove(node, owner) {
-    ////console.dir(node._type);
-    ////console.dir(owner._type);
-  //}
+  function remove(node, owner) {
+    //console.dir(node._type);
+    //console.dir(owner._type);
+    //if() {
+    
+    //}
+  }
 
-  //walker(chunk, remove);
+  walker(chunk, remove);
 
   // explicitly disabled, drop the chunk
   if(this.flags[chunk._type] === true) {
