@@ -27,7 +27,7 @@ function transform(chunk, encoding, cb) {
   var flags = this.flags;
 
   // explicitly disabled, drop the chunk
-  if(flags[chunk._type] === true) {
+  if(flags[chunk.type] === true) {
     return cb();
   }
 
@@ -37,7 +37,7 @@ function transform(chunk, encoding, cb) {
     , resume;
 
   while((event = walker.next())) {
-    if(flags[event.node._type] === true && event.entering) {
+    if(flags[event.node.type] === true && event.entering) {
       resume = event.node.next || event.node.parent;
       event.node.unlink();
       if(resume) {

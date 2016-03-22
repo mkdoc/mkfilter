@@ -5,7 +5,7 @@ var expect = require('chai').expect
   , parser = new mkast.Parser()
   , mkfilter = require('../../index')
   , utils = require('../util')
-  , collect = mkast.walker.collect;
+  , collect = mkast.NodeWalker.collect;
 
 describe('mkfilter:', function() {
 
