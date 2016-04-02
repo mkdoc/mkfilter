@@ -5,7 +5,7 @@ function api(cb) {
   mk.api(
     ['index.js'],
     {
-      stream: mk.dest('API.md'),
+      output: mk.dest('API.md'),
       heading: 'API'
     }, cb);
 }
@@ -17,6 +17,7 @@ function readme(cb) {
     .pipe(mk.ref())
     .pipe(mk.abs())
     .pipe(mk.msg())
+    .pipe(mk.toc({depth: 2}))
     .pipe(mk.out())
     .pipe(mk.dest('README.md'))
     .on('finish', cb);

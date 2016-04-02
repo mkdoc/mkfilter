@@ -8,6 +8,10 @@ Takes a map of filter flags and removes the matched types from the stream.
 
 <? @include readme/install.md ?>
 
+***
+<!-- @toc -->
+***
+
 ## Usage
 
 Create the stream and write a [commonmark][] document:
