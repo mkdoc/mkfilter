@@ -18,7 +18,7 @@ function Filter(opts) {
  *  @private {function} transform
  *  @member Filter
  *
- *  @param {Array} node input AST node.
+ *  @param {Array} node input node.
  *  @param {String} encoding character encoding.
  *  @param {Function} callback function.
  */
@@ -45,8 +45,8 @@ function transform(chunk, encoding, cb) {
     }
   }
 
-  // original chunk converted to a node
-  // may have had destructive updates, serialize and push
+  // original chunk converted to a document fragment
+  // may have had destructive updates - push updated node
   this.push(doc.firstChild);
   cb();
 }
