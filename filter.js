@@ -9,7 +9,6 @@ var through = require('through3')
  */
 function Filter(opts) {
   opts = opts || {};
-  this.keys = Object.keys(opts);
   this.flags = opts;
 }
 
@@ -24,21 +23,21 @@ function Filter(opts) {
  *  @param {Function} callback function.
  */
 function transform(chunk, encoding, cb) {
-  var flags = this.flags;
 
-  // explicitly disabled, drop the chunk
-  if(flags[chunk.type] === true) {
+  // explicitly disabled block element, drop the chunk
+  if(this.flags[chunk.type] === true) {
     return cb();
   }
 
+  // check for inline types that need removing
   var doc = Node.createDocumentFragment(chunk)
     , walker = doc.walker()
     , event
     , resume;
 
   while((event = walker.next())) {
-    if(flags[event.node.type] === true && event.entering) {
-      resume = event.node.next || event.node.parent;
+    if(this.flags[event.node.type] === true && event.entering) {
+      resume = event.node.next;
       event.node.unlink();
       if(resume) {
         walker.resumeAt(resume);

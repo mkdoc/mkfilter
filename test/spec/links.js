@@ -46,7 +46,7 @@ describe('mkfilter:', function() {
     var input = mkast.serialize(data)
       , output = fs.createWriteStream(target)
       // NOTE: must include the block level element
-      , opts = {input: input, output: output, links: true, paragraph: true};
+      , opts = {input: input, output: output, link: true};
    
     // use callback style
     mkfilter(opts, 
