@@ -1,4 +1,4 @@
-## Examples
+## Example
 
 Remove all headings from a document:
 

@@ -20,7 +20,7 @@ For the command line interface install [mkdoc][] globally (`npm i -g mkdoc`).
 
 - [Install](#install)
 - [Usage](#usage)
-- [Examples](#examples)
+- [Example](#example)
 - [Help](#help)
 - [API](#api)
   - [filter](#filter)
@@ -42,7 +42,7 @@ ast.src('## Heading\n\nParagraph.')
   .pipe(process.stdout);
 ```
 
-## Examples
+## Example
 
 Remove all headings from a document:
 
@@ -79,10 +79,11 @@ They will be included in the output.
 ## Help
 
 ```
-mkfilter [options]
+Usage: mkfilter [options]
 
-Filter nodes by type.
+  Filter nodes by type.
 
+Options
   -i, --invert            Invert the filter
   --document              Filter document nodes
   --softbreak             Filter softbreak nodes
@@ -108,7 +109,7 @@ Filter nodes by type.
   -h, --help              Display help and exit
   --version               Print the version and exit
 
-Report bugs to https://github.com/mkdoc/mkfilter/issues
+mkfilter@1.1.3
 ```
 
 ## API
@@ -137,7 +138,7 @@ MIT
 
 ---
 
-Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 2, 2016
+Created by [mkdoc](https://github.com/mkdoc/mkdoc) on April 18, 2016
 
 [mkdoc]: https://github.com/mkdoc/mkdoc
 [mkparse]: https://github.com/mkdoc/mkparse
